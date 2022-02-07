@@ -11,13 +11,15 @@ RUN sed -i s/archive.ubuntu.com/mirrors.aliyun.com/g /etc/apt/sources.list && se
 
 RUN apt-get update && apt-get install ffmpeg -y
 RUN apt-get install python -y  && apt-get install python3-pip -y
+RUN pip install paddlepaddle==2.2.2 -i https://mirror.baidu.com/pypi/simple && \
+    pip install paddlespeech -i https://pypi.tuna.tsinghua.edu.cn/simple
 RUN pip config set global.index-url http://mirrors.aliyun.com/pypi/simple
 RUN pip config set install.trusted-host mirrors.aliyun.com
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 RUN echo "Make sure Fastapi is installed:"
 # 
 COPY ./app /code/app
-COPY ./silk-v3-decoder /code/app
+COPY ./silk-v3-decoder /code/silk-v3-decoder
 # 
 RUN echo "EXPOSE PORT 81 "
 CMD ["uvicorn", "app.fast_test:app", "--host", "0.0.0.0", "--port", "81"]
