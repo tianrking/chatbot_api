@@ -1,1 +1,1 @@
-eval "$(/home/tianrking/anaconda3/bin/conda shell.bash hook)
+eval "$(/home/tianrking/anaconda3/bin/conda shell.bash hook)"
