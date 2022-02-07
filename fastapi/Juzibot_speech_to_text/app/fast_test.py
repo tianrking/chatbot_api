@@ -7,7 +7,7 @@ import os
 from pydub import AudioSegment
 app = FastAPI()
 
-@app.post("/api/audio")
+@app.get("/api/audio")
 async def audio_help():
     return "send_audio"
 
