@@ -11,17 +11,11 @@
 
 ## 请求接口
 
-### sts
-
-/sts        测试
-/sts/{data} 文字向量
-
-### asr
-
-/api/audio   测试
-/api/audio/  post 语音-> 文字
-
-### tts
-
-/api/tts   测试
-/api/tts/  文字->语音
+|  功能   | 接口  | 请求方式 | 功能 | 完成编写 |
+|  ----  | ----  | ----  | ----  |----|
+| sts  | /sts | get |测试| ✅|
+| ...  | /sts/ |get|文字->向量|✅|
+| asr  | /api/audio |get|测试||✅|
+| ... | /api/audio/ |post |语音->文字|✅|
+| tts  | /api/tts |get|文字->语音|❌|
+| ...| | |
