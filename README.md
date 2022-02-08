@@ -15,7 +15,7 @@
 |  ----  | ----  | ----  | ----  |----|
 | sts  | /sts | get |测试| ✅|
 | ...  | /sts/ |get|文字->向量|✅|
-| asr  | /api/audio |get|测试||✅|
+| asr  | /api/audio |get|测试|✅|
 | ... | /api/audio/ |post |语音->文字|✅|
 | tts  | /api/tts |get|文字->语音|❌|
 | ...| | |
