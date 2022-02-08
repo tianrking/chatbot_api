@@ -17,6 +17,7 @@ RUN pip config set global.index-url http://mirrors.aliyun.com/pypi/simple
 RUN pip config set install.trusted-host mirrors.aliyun.com
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 RUN pip install numpy==1.20.1
+RUN pip install librosa==0.8.1 
 RUN echo "Make sure Fastapi is installed:"
 # 
 COPY ./app /code/app
