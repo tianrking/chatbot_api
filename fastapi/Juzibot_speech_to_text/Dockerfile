@@ -5,7 +5,7 @@ LABEL version="v0.1"
 WORKDIR /code
 # 
 COPY ./requirements.txt /code/requirements.txt
-
+COPY ./nltk_data /root/nltk_data
 #
 RUN sed -i s/archive.ubuntu.com/mirrors.aliyun.com/g /etc/apt/sources.list && sed -i s/security.ubuntu.com/mirrors.aliyun.com/g /etc/apt/sources.list
 
@@ -16,6 +16,7 @@ RUN pip install paddlepaddle==2.2.2 -i https://mirror.baidu.com/pypi/simple && \
 RUN pip config set global.index-url http://mirrors.aliyun.com/pypi/simple
 RUN pip config set install.trusted-host mirrors.aliyun.com
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
+RUN pip install numpy==1.20.1
 RUN echo "Make sure Fastapi is installed:"
 # 
 COPY ./app /code/app

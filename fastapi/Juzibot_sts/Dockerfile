@@ -5,7 +5,8 @@ LABEL version="v0.1"
 WORKDIR /code
 # 
 COPY ./requirements.txt /code/requirements.txt
-
+COPY ./nltk_data /root/nltk_data
+COPY /root/.paddlespeech /root/.paddlespeech
 #
 RUN sed -i s/archive.ubuntu.com/mirrors.aliyun.com/g /etc/apt/sources.list && sed -i s/security.ubuntu.com/mirrors.aliyun.com/g /etc/apt/sources.list
 
