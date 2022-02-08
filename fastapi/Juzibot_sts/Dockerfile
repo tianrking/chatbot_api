@@ -13,13 +13,9 @@ RUN sed -i s/archive.ubuntu.com/mirrors.aliyun.com/g /etc/apt/sources.list && se
 
 RUN apt-get update && apt-get install ffmpeg -y
 RUN apt-get install python3==3.8 -y  && apt-get install python3-pip -y
-RUN pip install paddlepaddle==2.2.2 -i https://mirror.baidu.com/pypi/simple && \
-    pip install paddlespeech -i https://pypi.tuna.tsinghua.edu.cn/simple
 RUN pip config set global.index-url http://mirrors.aliyun.com/pypi/simple
 RUN pip config set install.trusted-host mirrors.aliyun.com
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
-RUN pip install librosa==0.8.1 
-RUN conda list |grep librosa
 # 
 COPY ./app /code/app
 # 
