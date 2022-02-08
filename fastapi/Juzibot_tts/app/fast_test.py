@@ -14,7 +14,7 @@ async def API_Server():
 
 @app.get("/api")
 async def API_help():
-    return "API server is running on /api/style"   
+    return "API server is running on /api/tts"   
 
 @app.get("/api/tts")
 async def audio_help():
@@ -28,11 +28,14 @@ class Item_tts(BaseModel):
 async def create_item(item: Item_tts):
     # tts_data=item.tts_data.replace("data:tts/message;base64,","")
     # pic_data = base64.b64decode(str(gg))
+
+    tts_data = base64.b64decode(str(item.tts_data)).decode('utf-8')
+    # print(tts_data)
     output_dir ='output.wav'
     tts_executor = TTSExecutor()
     wav_file = tts_executor(
-    text='今天的天气不错啊',
-    output= output_dir,
+    text= tts_data,
+    output='output.wav',
     am='fastspeech2_csmsc',
     am_config=None,
     am_ckpt=None,
@@ -48,11 +51,28 @@ async def create_item(item: Item_tts):
     lang='zh',
     device=paddle.get_device())
     print('Wave file has been generated: {}'.format(wav_file))
+    
+    base64_data = '' 
+    with open(output_dir, 'rb') as fileObj:
+        wav_data = fileObj.read()
+        base64_data = base64.b64encode(wav_data)
 
-    wav_data = base64.b64encode(output_dir)
-    pic_data = base64.b64decode(wav_data)
-    fout = open(("aa.wav"),'wb')
-    fout.write(pic_data)
-    fout.close()  # right
-    print(item.tts_data)
-    return item.pic_name
+    print(tts_data)
+    return base64_data
+
+# def ToBase64(file, txt):
+#     with open(file, 'rb') as fileObj:
+#         image_data = fileObj.read()
+#         base64_data = base64.b64encode(image_data)
+#         fout = open(txt, 'w')
+#         fout.write(base64_data.decode())
+#         fout.close()
+
+
+# def ToFile(txt, file):
+#     with open(txt, 'r') as fileObj:
+#         base64_data = fileObj.read()
+#         ori_image_data = base64.b64decode(base64_data)
+#         fout = open(file, 'wb')
+#         fout.write(ori_image_data)
+#         fout.close()
