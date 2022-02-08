@@ -5,7 +5,12 @@
 - fastapi
   - fastapi_sts ✅
   - fastapi_asr ✅
-  - fastapi_tts ❌
+  - fastapi_tts ✅
+  - fastapi_style ❌
+  - fastapi_ocr   ❌
+  - fastapi_ocr_mm ❌
+
+
 - golang
   - ...
 - nodejs
@@ -24,5 +29,6 @@
 | ...  | /sts/ |get|文字->向量|✅|
 | asr  | /api/audio |get|测试|✅|
 | ... | /api/audio/ |post |语音->文字|✅|
-| tts  | /api/tts |get|文字->语音|❌|
-| ...| | |
+| tts  | /api/tts |get|测试|✅|
+| ... | /api/tts/ |post |文字->语音|✅|
+| ... | 
