@@ -2,4 +2,4 @@
 
 - fastapi
   - fastapi_sts
-  - fastapi_speech2text
+  - fastapi_asr
