@@ -1,22 +1,15 @@
-import paddle
-from paddlespeech.cli import TTSExecutor
+from fastapi import FastAPI
+from starlette.responses import FileResponse
 
-tts_executor = TTSExecutor()
-wav_file = tts_executor(
-    text='今天的天气不错啊',
-    output='output.wav',
-    am='fastspeech2_csmsc',
-    am_config=None,
-    am_ckpt=None,
-    am_stat=None,
-    spk_id=0,
-    phones_dict=None,
-    tones_dict=None,
-    speaker_dict=None,
-    voc='pwgan_csmsc',
-    voc_config=None,
-    voc_ckpt=None,
-    voc_stat=None,
-    lang='zh',
-    device=paddle.get_device())
-print('Wave file has been generated: {}'.format(wav_file))
+
+app = FastAPI(name="monitor")
+
+
+@app.get("/download")
+async def download():
+    # 处理完毕文件以后，生成了文件路径
+    filename = "/storage/lol/test/fastapi/Juzibot_tts/output.wav"
+    return FileResponse(
+            filename,  # 这里的文件名是你要发送的文件名
+            filename="a.wav", # 这里的文件名是你要给用户展示的下载的文件名，比如我这里叫lol.exe
+        )
