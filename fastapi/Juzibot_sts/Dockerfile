@@ -5,14 +5,13 @@ LABEL version="v0.1"
 WORKDIR /code
 # 
 COPY ./requirements.txt /code/requirements.txt
-COPY ./nltk_data /root/nltk_data
-COPY /root/.paddlespeech /root/.paddlespeech
+# COPY ./nltk_data /root/nltk_data
 ##########
 #
 RUN sed -i s/archive.ubuntu.com/mirrors.aliyun.com/g /etc/apt/sources.list && sed -i s/security.ubuntu.com/mirrors.aliyun.com/g /etc/apt/sources.list
 
 RUN apt-get update && apt-get install ffmpeg -y
-RUN apt-get install python3==3.8 -y  && apt-get install python3-pip -y
+RUN apt-get install python -y  && apt-get install python3-pip -y
 RUN pip config set global.index-url http://mirrors.aliyun.com/pypi/simple
 RUN pip config set install.trusted-host mirrors.aliyun.com
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt

@@ -5,7 +5,7 @@ import fetch from 'node-fetch'
 import { Request } from 'node-fetch'
 import fs from 'fs'
 
-const url = 'http://0.0.0.0:61111'
+// const url = 'http://0.0.0.0:61112'
 // let testRequest = new Request(url + '/sts_post/', {
 //     method: 'post',
 //     headers: {
@@ -19,6 +19,25 @@ const url = 'http://0.0.0.0:61111'
 //         console.log(res)
 //     })
 // })
+
+
+// JSON.stringify({aa: 1})
+
+const url = 'http://0.0.0.0:61112'
+let testRequest = new Request(url + '/api/sts/', {
+    method: 'post',
+    headers: {
+        'Content-Type': 'application/json;charset=utf-8;'
+    },
+    //body: JSON.stringify({aa: 1})
+    body: JSON.stringify({ "text":123  })
+})
+fetch(testRequest).then(response => {
+    let result = response.text()
+    result.then(res => {
+        console.log(res)
+    })
+})
 
 //// Here’s a code snippet translating a string in UTF8 encoding to base64:
 /// const encoded = Buffer.from('username:password', 'utf8').toString('base64')  
@@ -41,26 +60,26 @@ const url = 'http://0.0.0.0:61111'
 ///
 //storage/lol/test/nodejs/octocat.png
 
-const body = {
-	field1: '1',
-	aaa: '1',
-	bbb: 8 ,
-	imgg: "data:image/gif;base64,"+fs.readFileSync("/storage/lol/test/nodejs/octocat.png", 'base64')
-};
-const response = await fetch(url + '/ttt/', {
-	method: 'post',
-	body: JSON.stringify(body),
-	headers: {'Content-Type': 'application/json'}
-});
+// const body = {
+// 	field1: '1',
+// 	aaa: '1',
+// 	bbb: 8 ,
+// 	imgg: "data:image/gif;base64,"+fs.readFileSync("/storage/lol/test/nodejs/octocat.png", 'base64')
+// };
+// const response = await fetch(url + '/ttt/', {
+// 	method: 'post',
+// 	body: JSON.stringify(body),
+// 	headers: {'Content-Type': 'application/json'}
+// });
 
-const data = await response.json()
+// const data = await response.json()
 
 // data.imgg=data.imgg.replace("data:image/gif;base64,","");
 // let buff = new Buffer.from(data.imgg, 'base64')
 // fs.writeFileSync('1.png', buff)
 
 
-console.log(data);
+//console.log(data);
 
 // const streamPipeline = nodeUtil.promisify(nodeStream.pipeline);
 
@@ -69,3 +88,20 @@ console.log(data);
 // if (!response.ok) throw new Error(`unexpected response ${response.statusText}`);
 
 // await streamPipeline(response.body, nodeFs.createWriteStream('./octocat.png'));
+
+// const url = 'http://0.0.0.0:63111/sts/'
+// text ="good"
+// export async function textVector(text) {
+//     const res = await fetch(URL, {
+//         method: 'POST',
+//         headers: {'ContentType': 'application/json'},
+//         body: JSON.stringify({ text }),
+//     })
+//     const json = await res.json()
+//     // console.log('text-vector', json)
+//     return json.data
+// }
+
+
+// const gg = await textVector(text)
+// console.log(gg)
