@@ -10,7 +10,8 @@ from pydub import AudioSegment
 
 app = FastAPI()
 
-model = SentenceTransformer('all-roberta-large-v1')
+# model = SentenceTransformer('all-roberta-large-v1')
+model = SentenceTransformer('paraphrase-multilingual-mpnet-base-v2') 
 
 @app.get("/sts")
 async def sts_help():
