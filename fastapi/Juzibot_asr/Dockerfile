@@ -29,8 +29,6 @@ RUN paddlespeech text --input 1
 RUN apt-get remove wget -y
 RUN apt-get autoremove -y
 
-# RUN RUN (echo "from sentence_transformers import SentenceTransformer, util" ; \
-#      echo "model = SentenceTransformer('paraphrase-multilingual-mpnet-base-v2')") | python3
 RUN echo "EXPOSE PORT 81 "
 CMD ["uvicorn", "app.fast_test:app", "--host", "0.0.0.0", "--port", "81"]
 
