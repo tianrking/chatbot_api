@@ -20,4 +20,3 @@ RUN (echo "from sentence_transformers import SentenceTransformer, util" ; \
      echo "model = SentenceTransformer('paraphrase-multilingual-mpnet-base-v2')") | python3
 
 CMD ["uvicorn", "app.fast_test:app", "--host", "0.0.0.0", "--port", "81"]
-
