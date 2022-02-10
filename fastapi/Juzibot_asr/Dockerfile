@@ -18,11 +18,19 @@ RUN pip config set install.trusted-host mirrors.aliyun.com
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 RUN pip install numpy==1.20.1
 RUN pip install librosa==0.8.1 
-RUN echo "Make sure Fastapi is installed:"
 # 
 COPY ./app /code/app
 COPY ./silk-v3-decoder /code/silk-v3-decoder
 # 
+RUN apt-get install wget -y
+RUN wget -c https://paddlespeech.bj.bcebos.com/PaddleAudio/zh.wav
+RUN paddlespeech asr --input ./zh.wav
+RUN paddlespeech text --input 1
+RUN apt-get remove wget -y
+RUN apt-get autoremove -y
+
+# RUN RUN (echo "from sentence_transformers import SentenceTransformer, util" ; \
+#      echo "model = SentenceTransformer('paraphrase-multilingual-mpnet-base-v2')") | python3
 RUN echo "EXPOSE PORT 81 "
 CMD ["uvicorn", "app.fast_test:app", "--host", "0.0.0.0", "--port", "81"]
 

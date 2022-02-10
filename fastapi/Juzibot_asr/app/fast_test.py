@@ -7,6 +7,8 @@ import os
 from pydub import AudioSegment
 import paddle
 from paddlespeech.cli import ASRExecutor
+from paddlespeech.cli import TextExecutor
+
 app = FastAPI()
 
 @app.get("/api/audio")
@@ -45,4 +47,16 @@ async def create_item(item: Item_audio):
     print('Result: \n{}'.format(text)
     )
     os.system("rm -rf "+dir+"*")
-    return text
+    
+    text_executor = TextExecutor()
+    result = text_executor(
+        text=text,
+        task='punc',
+        model='ernie_linear_p7_wudao',
+        lang='zh',
+        config=None,
+        ckpt_path=None,
+        punc_vocab=None,
+        device=paddle.get_device()
+        )
+    return result
